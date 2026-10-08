@@ -2,8 +2,17 @@ export default function TextOutput({ output, copied, onCopy }) {
   return (
     <div className="space-y-3">
       <label className="text-sm text-zinc-300">Output</label>
-      <div className="h-64 overflow-auto whitespace-pre-wrap rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-sm text-zinc-100">
-        {output || (
+      <div className="h-64 overflow-auto rounded-2xl border border-zinc-800 bg-zinc-950/60 p-4 text-sm text-zinc-100">
+        {output ? (
+          output
+            .split("\n")
+            .filter(Boolean)
+            .map((line, i) => (
+              <p key={i} className="mb-3 leading-7">
+                {line}
+              </p>
+            ))
+        ) : (
           <span className="text-zinc-500">
             Your transformed text will appear here.
           </span>
